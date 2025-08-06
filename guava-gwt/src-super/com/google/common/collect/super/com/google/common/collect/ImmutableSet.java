@@ -198,7 +198,7 @@ public abstract class ImmutableSet<E> extends ImmutableCollection<E> implements 
       }
     }
 
-    ImmutableList<E> createAsList() {
+    @Override ImmutableList<E> createAsList() {
       return new RegularImmutableAsList<E>(this, toArray());
     }
   }

@@ -349,11 +349,11 @@ public class LocalCache<K, V> implements ConcurrentMap<K, V> {
       return writeTimestamp;
     }
 
-    public boolean equals(Object o) {
+    @Override public boolean equals(Object o) {
       return value.equals(o);
     }
 
-    public int hashCode() {
+    @Override public int hashCode() {
       return value.hashCode();
     }
   }

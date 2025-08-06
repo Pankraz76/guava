@@ -256,7 +256,7 @@ public abstract class ImmutableSortedSet<E> extends ForwardingImmutableSet<E>
     this.sortedDelegate = Collections.unmodifiableSortedSet(sortedDelegate);
   }
 
-  public Comparator<? super E> comparator() {
+  @Override public Comparator<? super E> comparator() {
     return sortedDelegate.comparator();
   }
 
@@ -310,11 +310,11 @@ public abstract class ImmutableSortedSet<E> extends ForwardingImmutableSet<E>
     }
   }
 
-  public E first() {
+  @Override public E first() {
     return sortedDelegate.first();
   }
 
-  public ImmutableSortedSet<E> headSet(E toElement) {
+  @Override public ImmutableSortedSet<E> headSet(E toElement) {
     checkNotNull(toElement);
     try {
       return unsafeDelegateSortedSet(sortedDelegate.headSet(toElement), true);
@@ -357,11 +357,11 @@ public abstract class ImmutableSortedSet<E> extends ForwardingImmutableSet<E>
     return headSet(toElement);
   }
 
-  public E last() {
+  @Override public E last() {
     return sortedDelegate.last();
   }
 
-  public ImmutableSortedSet<E> subSet(E fromElement, E toElement) {
+  @Override public ImmutableSortedSet<E> subSet(E fromElement, E toElement) {
     return subSet(fromElement, true, toElement, false);
   }
 
@@ -377,7 +377,7 @@ public abstract class ImmutableSortedSet<E> extends ForwardingImmutableSet<E>
     return tailSet(fromElement, fromInclusive).headSet(toElement, toInclusive);
   }
 
-  public ImmutableSortedSet<E> tailSet(E fromElement) {
+  @Override public ImmutableSortedSet<E> tailSet(E fromElement) {
     checkNotNull(fromElement);
     try {
       return unsafeDelegateSortedSet(sortedDelegate.tailSet(fromElement), true);

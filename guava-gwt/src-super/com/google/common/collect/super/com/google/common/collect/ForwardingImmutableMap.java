@@ -49,23 +49,23 @@ public abstract class ForwardingImmutableMap<K, V> extends ImmutableMap<K, V> {
     this.delegate = Collections.unmodifiableMap(delegate);
   }
 
-  boolean isPartialView() {
+  @Override boolean isPartialView() {
     return false;
   }
 
-  public final boolean isEmpty() {
+  @Override public final boolean isEmpty() {
     return delegate.isEmpty();
   }
 
-  public final boolean containsKey(@Nullable Object key) {
+  @Override public final boolean containsKey(@Nullable Object key) {
     return Maps.safeContainsKey(delegate, key);
   }
 
-  public final boolean containsValue(@Nullable Object value) {
+  @Override public final boolean containsValue(@Nullable Object value) {
     return delegate.containsValue(value);
   }
 
-  public @Nullable V get(@Nullable Object key) {
+  @Override public @Nullable V get(@Nullable Object key) {
     return (key == null) ? null : Maps.safeGet(delegate, key);
   }
 

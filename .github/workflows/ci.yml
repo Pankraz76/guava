@@ -55,6 +55,9 @@ jobs:
       - name: 'Test'
         shell: bash
         run: ./mvnw -B -P!standard-with-extra-repos -Dtoolchain.skip verify -U -Dmaven.javadoc.skip=true -Dsurefire.toolchain.version=${{ matrix.java }} -f $ROOT_POM
+      - name: 'Rewrite'
+        shell: bash
+        run: ./mvnw -B -P!standard-with-extra-repos -Dtoolchain.skip rewrite:dryRun -U -Dmaven.javadoc.skip=true -Dsurefire.toolchain.version=${{ matrix.java }} -f $ROOT_POM
       - name: 'Print Surefire reports'
         # Note: Normally a step won't run if the job has failed, but this causes it to
         if: ${{ failure() }}

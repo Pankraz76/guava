@@ -195,8 +195,7 @@ public abstract class ImmutableBiMap<K, V> extends ForwardingImmutableMap<K, V>
       return this;
     }
 
-    @CanIgnoreReturnValue
-    public Builder<K, V> orderEntriesByValue(Comparator<? super V> valueComparator) {
+    @CanIgnoreReturnValue @Override public Builder<K, V> orderEntriesByValue(Comparator<? super V> valueComparator) {
       super.orderEntriesByValue(valueComparator);
       return this;
     }

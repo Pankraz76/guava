@@ -131,9 +131,36 @@
           </execution>
         </executions>
       </plugin>
+        <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>6.15.0</version>
+          <configuration>
+              <activeRecipes>
+                  <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+                  <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
+              </activeRecipes>
+                <exclusions>
+                  <exclusion>**module-info.java</exclusion>
+                </exclusions>
+              <exportDatatables>true</exportDatatables>
+              <failOnDryRunResults>true</failOnDryRunResults>
+          </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.openrewrite.recipe</groupId>
+                    <artifactId>rewrite-static-analysis</artifactId>
+                    <version>2.14.0</version>
+                </dependency>
+            </dependencies>
+        </plugin>
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>1.6</version>

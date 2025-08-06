@@ -231,19 +231,19 @@ public abstract class ImmutableList<E> extends ImmutableCollection<E>
     return (object == null) ? -1 : Lists.lastIndexOfImpl(this, object);
   }
 
-  public final boolean addAll(int index, Collection<? extends E> newElements) {
+  @Override public final boolean addAll(int index, Collection<? extends E> newElements) {
     throw new UnsupportedOperationException();
   }
 
-  public final E set(int index, E element) {
+  @Override public final E set(int index, E element) {
     throw new UnsupportedOperationException();
   }
 
-  public final void add(int index, E element) {
+  @Override public final void add(int index, E element) {
     throw new UnsupportedOperationException();
   }
 
-  public final E remove(int index) {
+  @Override public final E remove(int index) {
     throw new UnsupportedOperationException();
   }
 
