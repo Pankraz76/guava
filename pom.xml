@@ -145,7 +145,13 @@
           <configuration>
               <activeRecipes>
                   <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+                  <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
                   <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
+                  <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
+                  <recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>
+                  <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
+                  <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
+                  <recipe>tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes</recipe>
               </activeRecipes>
                 <exclusions>
                   <exclusion>**module-info.java</exclusion>
@@ -154,6 +160,11 @@
               <failOnDryRunResults>true</failOnDryRunResults>
           </configuration>
             <dependencies>
+                <dependency>
+                    <groupId>org.openrewrite.recipe</groupId>
+                    <artifactId>rewrite-third-party</artifactId>
+                    <version>0.24.3</version>
+                </dependency>
                 <dependency>
                     <groupId>org.openrewrite.recipe</groupId>
                     <artifactId>rewrite-static-analysis</artifactId>
