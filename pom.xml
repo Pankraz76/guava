@@ -179,16 +179,7 @@
           <version>6.15.0</version>
           <configuration>
             <activeRecipes>
-              <!--<recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>-->
-              <!--<recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>-->
-              <!--<recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>-->
-              <!--<recipe>org.openrewrite.staticanalysis.UnnecessaryThrows</recipe>-->
-              <!--<recipe>org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface</recipe>-->
-              <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-              <recipe>org.openrewrite.maven.BestPractices</recipe>
-              <recipe>org.openrewrite.maven.cleanup.PrefixlessExpressions</recipe>
-              <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
-              <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
+              <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
             </activeRecipes>
             <exclusions>
               <exclusion>**AbstractCompositeHashFunction.java</exclusion>
@@ -212,8 +203,8 @@
           <dependencies>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
-              <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.14.0</version>
+              <artifactId>rewrite-migrate-java</artifactId>
+              <version>3.14.1</version>
             </dependency>
           </dependencies>
         </plugin>
