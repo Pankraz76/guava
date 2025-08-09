@@ -41,6 +41,7 @@ import com.google.common.collect.Sets.ImprovedAbstractSet;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.concurrent.LazyInit;
 import com.google.j2objc.annotations.WeakOuter;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
@@ -538,8 +539,7 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
 
       @Override
       public boolean contains(@Nullable Object o) {
-        if (o instanceof Entry) {
-          Entry<?, ?> entry = (Entry<?, ?>) o;
+        if (o instanceof Entry<?, ?> entry) {
           return containsMapping(entry.getKey(), columnKey, entry.getValue());
         }
         return false;
@@ -547,8 +547,7 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
 
       @Override
       public boolean remove(@Nullable Object obj) {
-        if (obj instanceof Entry) {
-          Entry<?, ?> entry = (Entry<?, ?>) obj;
+        if (obj instanceof Entry<?, ?> entry) {
           return removeMapping(entry.getKey(), columnKey, entry.getValue());
         }
         return false;
@@ -848,8 +847,7 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
 
       @Override
       public boolean contains(@Nullable Object obj) {
-        if (obj instanceof Entry) {
-          Entry<?, ?> entry = (Entry<?, ?>) obj;
+        if (obj instanceof Entry<?, ?> entry) {
           return entry.getKey() != null
               && entry.getValue() instanceof Map
               && Collections2.safeContains(backingMap.entrySet(), entry);
@@ -859,8 +857,7 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
 
       @Override
       public boolean remove(@Nullable Object obj) {
-        if (obj instanceof Entry) {
-          Entry<?, ?> entry = (Entry<?, ?>) obj;
+        if (obj instanceof Entry<?, ?> entry) {
           return entry.getKey() != null
               && entry.getValue() instanceof Map
               && backingMap.entrySet().remove(entry);
@@ -928,8 +925,7 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
 
       @Override
       public boolean contains(@Nullable Object obj) {
-        if (obj instanceof Entry) {
-          Entry<?, ?> entry = (Entry<?, ?>) obj;
+        if (obj instanceof Entry<?, ?> entry) {
           if (containsColumn(entry.getKey())) {
             // requireNonNull is safe because of the containsColumn check.
             return requireNonNull(get(entry.getKey())).equals(entry.getValue());
@@ -944,8 +940,7 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
          * `o instanceof Entry` is guaranteed by `contains`, but we check it here to satisfy our
          * nullness checker.
          */
-        if (contains(obj) && obj instanceof Entry) {
-          Entry<?, ?> entry = (Entry<?, ?>) obj;
+        if (contains(obj) && obj instanceof Entry<?, ?> entry) {
           removeColumn(entry.getKey());
           return true;
         }
@@ -1023,5 +1018,5 @@ class StandardTable<R, C, V> extends AbstractTable<R, C, V> implements Serializa
     }
   }
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

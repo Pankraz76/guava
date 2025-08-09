@@ -173,8 +173,7 @@ public class FauxveridesTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof MethodSignature) {
-        MethodSignature other = (MethodSignature) obj;
+      if (obj instanceof MethodSignature other) {
         return name.equals(other.name)
             && parameterTypes.equals(other.parameterTypes)
             && typeSignature.equals(other.typeSignature);
@@ -216,8 +215,7 @@ public class FauxveridesTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof TypeSignature) {
-        TypeSignature other = (TypeSignature) obj;
+      if (obj instanceof TypeSignature other) {
         return parameterSignatures.equals(other.parameterSignatures);
       }
 
@@ -248,8 +246,7 @@ public class FauxveridesTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof TypeParameterSignature) {
-        TypeParameterSignature other = (TypeParameterSignature) obj;
+      if (obj instanceof TypeParameterSignature other) {
         /*
          * The name is here only for display purposes; <E extends Number> and <T
          * extends Number> are equivalent.
@@ -282,8 +279,8 @@ public class FauxveridesTest extends TestCase {
       new Function<Type, String>() {
         @Override
         public String apply(Type from) {
-          if (from instanceof Class) {
-            return ((Class<?>) from).getSimpleName();
+          if (from instanceof Class<?> class1) {
+            return class1.getSimpleName();
           }
           return from.toString();
         }

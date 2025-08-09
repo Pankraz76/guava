@@ -211,7 +211,7 @@ public abstract class LinearTransformation {
 
     @Override
     public String toString() {
-      return String.format("y = %g * x + %g", slope, yIntercept);
+      return "y = %g * x + %g".formatted(slope, yIntercept);
     }
 
     private LinearTransformation createInverse() {
@@ -267,7 +267,7 @@ public abstract class LinearTransformation {
 
     @Override
     public String toString() {
-      return String.format("x = %g", x);
+      return "x = %g".formatted(x);
     }
 
     private LinearTransformation createInverse() {

@@ -21,6 +21,7 @@ import static java.util.Arrays.asList;
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.annotations.J2ktIncompatible;
+import java.io.Serial;
 import java.io.Serializable;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
@@ -58,8 +59,7 @@ class LegacyComparable implements Comparable, Serializable {
 
   @Override
   public boolean equals(@Nullable Object object) {
-    if (object instanceof LegacyComparable) {
-      LegacyComparable that = (LegacyComparable) object;
+    if (object instanceof LegacyComparable that) {
       return this.value.equals(that.value);
     }
     return false;
@@ -70,5 +70,5 @@ class LegacyComparable implements Comparable, Serializable {
     return value.hashCode();
   }
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

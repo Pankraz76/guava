@@ -20,6 +20,7 @@ import com.google.common.annotations.GwtIncompatible;
 import com.google.common.annotations.J2ktIncompatible;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -127,8 +128,7 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
 
   @Override
   public boolean equals(@Nullable Object object) {
-    if (object instanceof Set) {
-      Set<?> that = (Set<?>) object;
+    if (object instanceof Set<?> that) {
       return that.isEmpty();
     }
     return false;
@@ -158,7 +158,7 @@ final class EmptyContiguousSet<C extends Comparable> extends ContiguousSet<C> {
       return new EmptyContiguousSet<>(domain);
     }
 
-    @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+    @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
   }
 
   @GwtIncompatible

@@ -589,8 +589,8 @@ public final class Shorts extends ShortsMethodsForWeb {
    * @since 1.0 (parameter was {@code Collection<Short>} before 12.0)
    */
   public static short[] toArray(Collection<? extends Number> collection) {
-    if (collection instanceof ShortArrayAsList) {
-      return ((ShortArrayAsList) collection).toShortArray();
+    if (collection instanceof ShortArrayAsList list) {
+      return list.toShortArray();
     }
 
     Object[] boxedArray = collection.toArray();
@@ -659,14 +659,14 @@ public final class Shorts extends ShortsMethodsForWeb {
     @Override
     public boolean contains(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      return (target instanceof Short) && Shorts.indexOf(array, (Short) target, start, end) != -1;
+      return (target instanceof Short s) && Shorts.indexOf(array, s, start, end) != -1;
     }
 
     @Override
     public int indexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Short) {
-        int i = Shorts.indexOf(array, (Short) target, start, end);
+      if (target instanceof Short short1) {
+        int i = Shorts.indexOf(array, short1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -677,8 +677,8 @@ public final class Shorts extends ShortsMethodsForWeb {
     @Override
     public int lastIndexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Short) {
-        int i = Shorts.lastIndexOf(array, (Short) target, start, end);
+      if (target instanceof Short short1) {
+        int i = Shorts.lastIndexOf(array, short1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -710,8 +710,7 @@ public final class Shorts extends ShortsMethodsForWeb {
       if (object == this) {
         return true;
       }
-      if (object instanceof ShortArrayAsList) {
-        ShortArrayAsList that = (ShortArrayAsList) object;
+      if (object instanceof ShortArrayAsList that) {
         int size = size();
         if (that.size() != size) {
           return false;

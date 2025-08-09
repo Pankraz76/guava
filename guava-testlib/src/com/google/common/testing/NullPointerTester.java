@@ -358,8 +358,7 @@ public final class NullPointerTester {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof Signature) {
-        Signature that = (Signature) obj;
+      if (obj instanceof Signature that) {
         return name.equals(that.name) && parameterTypes.equals(that.parameterTypes);
       }
       return false;
@@ -495,8 +494,8 @@ public final class NullPointerTester {
   }
 
   private static TypeToken<?> getFirstTypeParameter(Type type) {
-    if (type instanceof ParameterizedType) {
-      return TypeToken.of(((ParameterizedType) type).getActualTypeArguments()[0]);
+    if (type instanceof ParameterizedType parameterizedType) {
+      return TypeToken.of(parameterizedType.getActualTypeArguments()[0]);
     } else {
       return TypeToken.of(Object.class);
     }

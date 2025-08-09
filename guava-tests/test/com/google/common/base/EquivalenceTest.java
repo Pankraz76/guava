@@ -151,15 +151,15 @@ public class EquivalenceTest extends TestCase {
 
   public void testEqualsEquivalent() {
     EquivalenceTester.of(Equivalence.equals())
-        .addEquivalenceGroup(new Integer(42_000_000), 42_000_000)
+        .addEquivalenceGroup(Integer.valueOf(42_000_000), 42_000_000)
         .addEquivalenceGroup("a")
         .test();
   }
 
   public void testIdentityEquivalent() {
     EquivalenceTester.of(Equivalence.identity())
-        .addEquivalenceGroup(new Integer(42_000_000))
-        .addEquivalenceGroup(new Integer(42_000_000))
+        .addEquivalenceGroup(Integer.valueOf(42_000_000))
+        .addEquivalenceGroup(Integer.valueOf(42_000_000))
         .addEquivalenceGroup("a")
         .test();
   }

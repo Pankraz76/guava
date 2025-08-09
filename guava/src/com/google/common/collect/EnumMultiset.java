@@ -28,6 +28,7 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -98,8 +99,7 @@ public final class EnumMultiset<E extends Enum<E>> extends AbstractMultiset<E>
   }
 
   private boolean isActuallyE(@Nullable Object o) {
-    if (o instanceof Enum) {
-      Enum<?> e = (Enum<?>) o;
+    if (o instanceof Enum<?> e) {
       int index = e.ordinal();
       return index < enumConstants.length && enumConstants[index] == e;
     }
@@ -317,5 +317,5 @@ public final class EnumMultiset<E extends Enum<E>> extends AbstractMultiset<E>
     Serialization.populateMultiset(this, stream);
   }
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

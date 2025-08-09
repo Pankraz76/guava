@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
@@ -2786,7 +2787,7 @@ final class MapMakerInternalMap<
 
   // Serialization Support
 
-  private static final long serialVersionUID = 5;
+  @Serial private static final long serialVersionUID = 5;
 
   Object writeReplace() {
     return new SerializationProxy<>(
@@ -2809,7 +2810,7 @@ final class MapMakerInternalMap<
    */
   abstract static class AbstractSerializationProxy<K, V> extends ForwardingConcurrentMap<K, V>
       implements Serializable {
-    private static final long serialVersionUID = 3;
+    @Serial private static final long serialVersionUID = 3;
 
     final Strength keyStrength;
     final Strength valueStrength;
@@ -2878,7 +2879,7 @@ final class MapMakerInternalMap<
    * circular dependency is present, so the proxy must be able to behave as the map itself.
    */
   private static final class SerializationProxy<K, V> extends AbstractSerializationProxy<K, V> {
-    private static final long serialVersionUID = 3;
+    @Serial private static final long serialVersionUID = 3;
 
     SerializationProxy(
         Strength keyStrength,

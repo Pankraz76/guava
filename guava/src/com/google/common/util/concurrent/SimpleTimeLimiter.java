@@ -228,11 +228,11 @@ public final class SimpleTimeLimiter implements TimeLimiter {
           ObjectArrays.concat(cause.getStackTrace(), e.getStackTrace(), StackTraceElement.class);
       cause.setStackTrace(combined);
     }
-    if (cause instanceof Exception) {
-      throw (Exception) cause;
+    if (cause instanceof Exception exception) {
+      throw exception;
     }
-    if (cause instanceof Error) {
-      throw (Error) cause;
+    if (cause instanceof Error error) {
+      throw error;
     }
     // The cause is a weird kind of Throwable, so throw the outer exception.
     throw e;
@@ -259,8 +259,8 @@ public final class SimpleTimeLimiter implements TimeLimiter {
   }
 
   private void wrapAndThrowExecutionExceptionOrError(Throwable cause) throws ExecutionException {
-    if (cause instanceof Error) {
-      throw new ExecutionError((Error) cause);
+    if (cause instanceof Error error) {
+      throw new ExecutionError(error);
     } else if (cause instanceof RuntimeException) {
       throw new UncheckedExecutionException(cause);
     } else {
@@ -269,8 +269,8 @@ public final class SimpleTimeLimiter implements TimeLimiter {
   }
 
   private void wrapAndThrowRuntimeExecutionExceptionOrError(Throwable cause) {
-    if (cause instanceof Error) {
-      throw new ExecutionError((Error) cause);
+    if (cause instanceof Error error) {
+      throw new ExecutionError(error);
     } else {
       throw new UncheckedExecutionException(cause);
     }

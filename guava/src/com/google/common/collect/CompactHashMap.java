@@ -829,8 +829,7 @@ class CompactHashMap<K extends @Nullable Object, V extends @Nullable Object>
       Map<K, V> delegate = delegateOrNull();
       if (delegate != null) {
         return delegate.entrySet().contains(o);
-      } else if (o instanceof Entry) {
-        Entry<?, ?> entry = (Entry<?, ?>) o;
+      } else if (o instanceof Entry<?, ?> entry) {
         int index = indexOf(entry.getKey());
         return index != -1 && Objects.equals(value(index), entry.getValue());
       }
@@ -842,8 +841,7 @@ class CompactHashMap<K extends @Nullable Object, V extends @Nullable Object>
       Map<K, V> delegate = delegateOrNull();
       if (delegate != null) {
         return delegate.entrySet().remove(o);
-      } else if (o instanceof Entry) {
-        Entry<?, ?> entry = (Entry<?, ?>) o;
+      } else if (o instanceof Entry<?, ?> entry) {
         if (needsAllocArrays()) {
           return false;
         }

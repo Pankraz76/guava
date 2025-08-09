@@ -169,8 +169,7 @@ public final class Functions {
 
     @Override
     public boolean equals(@Nullable Object o) {
-      if (o instanceof FunctionForMapNoDefault) {
-        FunctionForMapNoDefault<?, ?> that = (FunctionForMapNoDefault<?, ?>) o;
+      if (o instanceof FunctionForMapNoDefault<?, ?> that) {
         return map.equals(that.map);
       }
       return false;
@@ -212,8 +211,7 @@ public final class Functions {
 
     @Override
     public boolean equals(@Nullable Object o) {
-      if (o instanceof ForMapWithDefault) {
-        ForMapWithDefault<?, ?> that = (ForMapWithDefault<?, ?>) o;
+      if (o instanceof ForMapWithDefault<?, ?> that) {
         return map.equals(that.map) && Objects.equals(defaultValue, that.defaultValue);
       }
       return false;
@@ -270,8 +268,7 @@ public final class Functions {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof FunctionComposition) {
-        FunctionComposition<?, ?, ?> that = (FunctionComposition<?, ?, ?>) obj;
+      if (obj instanceof FunctionComposition<?, ?, ?> that) {
         return f.equals(that.f) && g.equals(that.g);
       }
       return false;
@@ -324,8 +321,7 @@ public final class Functions {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof PredicateFunction) {
-        PredicateFunction<?> that = (PredicateFunction<?>) obj;
+      if (obj instanceof PredicateFunction<?> that) {
         return predicate.equals(that.predicate);
       }
       return false;
@@ -375,8 +371,7 @@ public final class Functions {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof ConstantFunction) {
-        ConstantFunction<?> that = (ConstantFunction<?>) obj;
+      if (obj instanceof ConstantFunction<?> that) {
         return Objects.equals(value, that.value);
       }
       return false;
@@ -430,8 +425,7 @@ public final class Functions {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SupplierFunction) {
-        SupplierFunction<?, ?> that = (SupplierFunction<?, ?>) obj;
+      if (obj instanceof SupplierFunction<?, ?> that) {
         return this.supplier.equals(that.supplier);
       }
       return false;

@@ -67,8 +67,8 @@ public final class CharStreams {
     // take advantage of that.
     if (from instanceof Reader) {
       // optimize for common output types which are optimized to deal with char[]
-      if (to instanceof StringBuilder) {
-        return copyReaderToBuilder((Reader) from, (StringBuilder) to);
+      if (to instanceof StringBuilder builder) {
+        return copyReaderToBuilder((Reader) from, builder);
       } else {
         return copyReaderToWriter((Reader) from, asWriter(to));
       }
@@ -169,8 +169,8 @@ public final class CharStreams {
    */
   private static StringBuilder toStringBuilder(Readable r) throws IOException {
     StringBuilder sb = new StringBuilder();
-    if (r instanceof Reader) {
-      copyReaderToBuilder((Reader) r, sb);
+    if (r instanceof Reader reader) {
+      copyReaderToBuilder(reader, sb);
     } else {
       copy(r, sb);
     }
@@ -340,8 +340,8 @@ public final class CharStreams {
    * @return a new Writer object, unless target is a Writer, in which case the target is returned
    */
   public static Writer asWriter(Appendable target) {
-    if (target instanceof Writer) {
-      return (Writer) target;
+    if (target instanceof Writer writer) {
+      return writer;
     }
     return new AppendableWriter(target);
   }

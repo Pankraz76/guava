@@ -19,6 +19,7 @@ package com.google.common.collect;
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.annotations.J2ktIncompatible;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -58,8 +59,7 @@ final class LexicographicalOrdering<T extends @Nullable Object> extends Ordering
     if (object == this) {
       return true;
     }
-    if (object instanceof LexicographicalOrdering) {
-      LexicographicalOrdering<?> that = (LexicographicalOrdering<?>) object;
+    if (object instanceof LexicographicalOrdering<?> that) {
       return this.elementOrder.equals(that.elementOrder);
     }
     return false;
@@ -75,5 +75,5 @@ final class LexicographicalOrdering<T extends @Nullable Object> extends Ordering
     return elementOrder + ".lexicographical()";
   }
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

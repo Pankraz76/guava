@@ -104,8 +104,8 @@ final class ClusterException extends RuntimeException {
     }
     if (exceptions.size() == 1) {
       Throwable temp = exceptions.iterator().next();
-      if (temp instanceof RuntimeException) {
-        return (RuntimeException) temp;
+      if (temp instanceof RuntimeException exception) {
+        return exception;
       } else {
         return new RuntimeException(temp);
       }

@@ -82,8 +82,8 @@ public abstract class AbstractHashFloodingTest<T> extends TestCase {
     @Override
     public boolean equals(@Nullable Object other) {
       onEquals.run();
-      return other instanceof CountsHashCodeAndEquals
-          && delegateString.equals(((CountsHashCodeAndEquals) other).delegateString);
+      return other instanceof CountsHashCodeAndEquals chcae
+          && delegateString.equals(chcae.delegateString);
     }
 
     @Override

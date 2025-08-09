@@ -660,8 +660,8 @@ public class OrderingTest extends TestCase {
   }
 
   public void testLeastOfIterable_ties() {
-    Integer foo = new Integer(Integer.MAX_VALUE - 10);
-    Integer bar = new Integer(Integer.MAX_VALUE - 10);
+    Integer foo = Integer.valueOf(Integer.MAX_VALUE - 10);
+    Integer bar = Integer.valueOf(Integer.MAX_VALUE - 10);
 
     assertNotSame(foo, bar);
     assertEquals(foo, bar);
@@ -672,8 +672,8 @@ public class OrderingTest extends TestCase {
   }
 
   public void testLeastOfIterator_ties() {
-    Integer foo = new Integer(Integer.MAX_VALUE - 10);
-    Integer bar = new Integer(Integer.MAX_VALUE - 10);
+    Integer foo = Integer.valueOf(Integer.MAX_VALUE - 10);
+    Integer bar = Integer.valueOf(Integer.MAX_VALUE - 10);
 
     assertNotSame(foo, bar);
     assertEquals(foo, bar);
@@ -757,8 +757,8 @@ public class OrderingTest extends TestCase {
     assertEquals(0, (int) numberOrdering.min(ints.iterator()));
 
     // when the values are the same, the first argument should be returned
-    Integer a = new Integer(4);
-    Integer b = new Integer(4);
+    Integer a = Integer.valueOf(4);
+    Integer b = Integer.valueOf(4);
     ints = Lists.newArrayList(a, b, b);
     assertSame(a, numberOrdering.max(ints.iterator()));
     assertSame(a, numberOrdering.min(ints.iterator()));
@@ -784,8 +784,8 @@ public class OrderingTest extends TestCase {
     assertEquals(0, (int) numberOrdering.min(ints));
 
     // when the values are the same, the first argument should be returned
-    Integer a = new Integer(4);
-    Integer b = new Integer(4);
+    Integer a = Integer.valueOf(4);
+    Integer b = Integer.valueOf(4);
     ints = Lists.newArrayList(a, b, b);
     assertSame(a, numberOrdering.max(ints));
     assertSame(a, numberOrdering.min(ints));
@@ -806,8 +806,8 @@ public class OrderingTest extends TestCase {
     assertEquals(0, (int) numberOrdering.min(5, 3, 0, 9, 0));
 
     // when the values are the same, the first argument should be returned
-    Integer a = new Integer(4);
-    Integer b = new Integer(4);
+    Integer a = Integer.valueOf(4);
+    Integer b = Integer.valueOf(4);
     assertSame(a, numberOrdering.max(a, b, b));
     assertSame(a, numberOrdering.min(a, b, b));
   }
@@ -819,8 +819,8 @@ public class OrderingTest extends TestCase {
     assertEquals(3, (int) numberOrdering.min(5, 3));
 
     // when the values are the same, the first argument should be returned
-    Integer a = new Integer(4);
-    Integer b = new Integer(4);
+    Integer a = Integer.valueOf(4);
+    Integer b = Integer.valueOf(4);
     assertSame(a, numberOrdering.max(a, b));
     assertSame(a, numberOrdering.min(a, b));
   }

@@ -540,8 +540,8 @@ public final class Doubles extends DoublesMethodsForWeb {
    * @since 1.0 (parameter was {@code Collection<Double>} before 12.0)
    */
   public static double[] toArray(Collection<? extends Number> collection) {
-    if (collection instanceof DoubleArrayAsList) {
-      return ((DoubleArrayAsList) collection).toDoubleArray();
+    if (collection instanceof DoubleArrayAsList list) {
+      return list.toDoubleArray();
     }
 
     Object[] boxedArray = collection.toArray();
@@ -621,15 +621,15 @@ public final class Doubles extends DoublesMethodsForWeb {
     @Override
     public boolean contains(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      return (target instanceof Double)
-          && Doubles.indexOf(array, (Double) target, start, end) != -1;
+      return (target instanceof Double d)
+          && Doubles.indexOf(array, d, start, end) != -1;
     }
 
     @Override
     public int indexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Double) {
-        int i = Doubles.indexOf(array, (Double) target, start, end);
+      if (target instanceof Double double1) {
+        int i = Doubles.indexOf(array, double1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -640,8 +640,8 @@ public final class Doubles extends DoublesMethodsForWeb {
     @Override
     public int lastIndexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Double) {
-        int i = Doubles.lastIndexOf(array, (Double) target, start, end);
+      if (target instanceof Double double1) {
+        int i = Doubles.lastIndexOf(array, double1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -673,8 +673,7 @@ public final class Doubles extends DoublesMethodsForWeb {
       if (object == this) {
         return true;
       }
-      if (object instanceof DoubleArrayAsList) {
-        DoubleArrayAsList that = (DoubleArrayAsList) object;
+      if (object instanceof DoubleArrayAsList that) {
         int size = size();
         if (that.size() != size) {
           return false;

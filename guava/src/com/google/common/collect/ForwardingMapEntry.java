@@ -94,8 +94,7 @@ public abstract class ForwardingMapEntry<K extends @Nullable Object, V extends @
    * @since 7.0
    */
   protected boolean standardEquals(@Nullable Object object) {
-    if (object instanceof Entry) {
-      Entry<?, ?> that = (Entry<?, ?>) object;
+    if (object instanceof Entry<?, ?> that) {
       return Objects.equals(this.getKey(), that.getKey())
           && Objects.equals(this.getValue(), that.getValue());
     }

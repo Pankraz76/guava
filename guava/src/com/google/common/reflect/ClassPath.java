@@ -276,8 +276,7 @@ public final class ClassPath {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof ResourceInfo) {
-        ResourceInfo that = (ResourceInfo) obj;
+      if (obj instanceof ResourceInfo that) {
         return resourceName.equals(that.resourceName) && loader == that.loader;
       }
       return false;
@@ -549,8 +548,7 @@ public final class ClassPath {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof LocationInfo) {
-        LocationInfo that = (LocationInfo) obj;
+      if (obj instanceof LocationInfo that) {
         return home.equals(that.home) && classloader.equals(that.classloader);
       }
       return false;
@@ -620,8 +618,8 @@ public final class ClassPath {
   }
 
   private static ImmutableList<URL> getClassLoaderUrls(ClassLoader classloader) {
-    if (classloader instanceof URLClassLoader) {
-      return ImmutableList.copyOf(((URLClassLoader) classloader).getURLs());
+    if (classloader instanceof URLClassLoader classLoader) {
+      return ImmutableList.copyOf(classLoader.getURLs());
     }
     if (classloader.equals(ClassLoader.getSystemClassLoader())) {
       return parseJavaClassPath();

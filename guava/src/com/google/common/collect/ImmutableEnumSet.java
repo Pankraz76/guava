@@ -24,6 +24,7 @@ import com.google.common.annotations.J2ktIncompatible;
 import com.google.errorprone.annotations.concurrent.LazyInit;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -96,8 +97,8 @@ final class ImmutableEnumSet<E extends Enum<E>> extends ImmutableSet<E> {
 
   @Override
   public boolean containsAll(Collection<?> collection) {
-    if (collection instanceof ImmutableEnumSet<?>) {
-      collection = ((ImmutableEnumSet<?>) collection).delegate;
+    if (collection instanceof ImmutableEnumSet<?> set) {
+      collection = set.delegate;
     }
     return delegate.containsAll(collection);
   }
@@ -112,8 +113,8 @@ final class ImmutableEnumSet<E extends Enum<E>> extends ImmutableSet<E> {
     if (object == this) {
       return true;
     }
-    if (object instanceof ImmutableEnumSet) {
-      object = ((ImmutableEnumSet<?>) object).delegate;
+    if (object instanceof ImmutableEnumSet<?> set) {
+      object = set.delegate;
     }
     return delegate.equals(object);
   }
@@ -163,6 +164,6 @@ final class ImmutableEnumSet<E extends Enum<E>> extends ImmutableSet<E> {
       return new ImmutableEnumSet<E>(delegate.clone());
     }
 
-    @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+    @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
   }
 }

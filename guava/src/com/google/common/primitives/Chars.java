@@ -434,8 +434,8 @@ public final class Chars {
    * @throws NullPointerException if {@code collection} or any of its elements is null
    */
   public static char[] toArray(Collection<Character> collection) {
-    if (collection instanceof CharArrayAsList) {
-      return ((CharArrayAsList) collection).toCharArray();
+    if (collection instanceof CharArrayAsList list) {
+      return list.toCharArray();
     }
 
     Object[] boxedArray = collection.toArray();
@@ -608,15 +608,15 @@ public final class Chars {
     @Override
     public boolean contains(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      return (target instanceof Character)
-          && Chars.indexOf(array, (Character) target, start, end) != -1;
+      return (target instanceof Character c)
+          && Chars.indexOf(array, c, start, end) != -1;
     }
 
     @Override
     public int indexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Character) {
-        int i = Chars.indexOf(array, (Character) target, start, end);
+      if (target instanceof Character character) {
+        int i = Chars.indexOf(array, character, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -627,8 +627,8 @@ public final class Chars {
     @Override
     public int lastIndexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Character) {
-        int i = Chars.lastIndexOf(array, (Character) target, start, end);
+      if (target instanceof Character character) {
+        int i = Chars.lastIndexOf(array, character, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -660,8 +660,7 @@ public final class Chars {
       if (object == this) {
         return true;
       }
-      if (object instanceof CharArrayAsList) {
-        CharArrayAsList that = (CharArrayAsList) object;
+      if (object instanceof CharArrayAsList that) {
         int size = size();
         if (that.size() != size) {
           return false;

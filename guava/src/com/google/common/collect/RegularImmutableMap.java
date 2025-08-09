@@ -28,6 +28,7 @@ import com.google.common.annotations.J2ktIncompatible;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableMapEntry.NonTerminalImmutableMapEntry;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.IdentityHashMap;
 import java.util.function.BiConsumer;
@@ -365,7 +366,7 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
         return map.keySet();
       }
 
-      @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+      @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
     }
   }
 
@@ -420,7 +421,7 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
         return map.values();
       }
 
-      @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+      @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
     }
   }
 
@@ -435,5 +436,5 @@ final class RegularImmutableMap<K, V> extends ImmutableMap<K, V> {
 
   // This class is never actually serialized directly, but we have to make the
   // warning go away (and suppressing would suppress for all nested classes too)
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

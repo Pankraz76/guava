@@ -750,6 +750,6 @@ public class BigIntegerMathTest extends TestCase {
   @GwtIncompatible // String.format
   @FormatMethod
   private static void failFormat(String template, Object... args) {
-    fail(String.format(template, args));
+    fail(template.formatted(args));
   }
 }

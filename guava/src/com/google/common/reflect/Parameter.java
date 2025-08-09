@@ -138,8 +138,7 @@ public final class Parameter implements AnnotatedElement {
 
   @Override
   public boolean equals(@Nullable Object obj) {
-    if (obj instanceof Parameter) {
-      Parameter that = (Parameter) obj;
+    if (obj instanceof Parameter that) {
       return position == that.position && declaration.equals(that.declaration);
     }
     return false;

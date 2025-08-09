@@ -83,8 +83,8 @@ public class Helpers {
   }
 
   private static boolean isEmpty(Iterable<?> iterable) {
-    return iterable instanceof Collection
-        ? ((Collection<?>) iterable).isEmpty()
+    return iterable instanceof Collection<?> c
+        ? c.isEmpty()
         : !iterable.iterator().hasNext();
   }
 
@@ -160,8 +160,8 @@ public class Helpers {
 
   public static void assertContains(Iterable<?> actual, Object expected) {
     boolean contained = false;
-    if (actual instanceof Collection) {
-      contained = ((Collection<?>) actual).contains(expected);
+    if (actual instanceof Collection<?> collection) {
+      contained = collection.contains(expected);
     } else {
       for (Object o : actual) {
         if (equal(o, expected)) {
@@ -513,8 +513,7 @@ public class Helpers {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof NullsBefore) {
-        NullsBefore other = (NullsBefore) obj;
+      if (obj instanceof NullsBefore other) {
         return justAfterNull.equals(other.justAfterNull);
       }
       return false;

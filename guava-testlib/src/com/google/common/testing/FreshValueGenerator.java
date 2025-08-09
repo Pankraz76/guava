@@ -309,8 +309,7 @@ class FreshValueGenerator {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof FreshInvocationHandler) {
-        FreshInvocationHandler that = (FreshInvocationHandler) obj;
+      if (obj instanceof FreshInvocationHandler that) {
         return identity == that.identity;
       }
       return false;
@@ -388,7 +387,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Integer generateInteger() {
-    return new Integer(generateInt());
+    return Integer.valueOf(generateInt());
   }
 
   @Generates
@@ -399,7 +398,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Long generateLongObject() {
-    return new Long(generateLong());
+    return Long.valueOf(generateLong());
   }
 
   @Generates
@@ -410,7 +409,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Float generateFloatObject() {
-    return new Float(generateFloat());
+    return Float.valueOf(generateFloat());
   }
 
   @Generates
@@ -421,7 +420,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Double generateDoubleObject() {
-    return new Double(generateDouble());
+    return Double.valueOf(generateDouble());
   }
 
   @Generates
@@ -432,7 +431,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Short generateShortObject() {
-    return new Short(generateShort());
+    return Short.valueOf(generateShort());
   }
 
   @Generates
@@ -443,7 +442,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Byte generateByteObject() {
-    return new Byte(generateByte());
+    return Byte.valueOf(generateByte());
   }
 
   @Generates
@@ -454,7 +453,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Character generateCharacter() {
-    return new Character(generateChar());
+    return Character.valueOf(generateChar());
   }
 
   @Generates
@@ -465,7 +464,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Boolean generateBooleanObject() {
-    return new Boolean(generateBoolean());
+    return Boolean.valueOf(generateBoolean());
   }
 
   @Generates

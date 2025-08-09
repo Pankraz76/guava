@@ -603,8 +603,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof HasAnInterface) {
-        HasAnInterface that = (HasAnInterface) obj;
+      if (obj instanceof HasAnInterface that) {
         return i.equals(that.i);
       } else {
         return false;
@@ -744,8 +743,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof GoodEquals) {
-        GoodEquals that = (GoodEquals) obj;
+      if (obj instanceof GoodEquals that) {
         return a.equals(that.a) && b == that.b;
       } else {
         return false;
@@ -792,8 +790,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings({"BoxedPrimitiveEquality", "NumericEquality"})
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameIntegerInstance) {
-        SameIntegerInstance that = (SameIntegerInstance) obj;
+      if (obj instanceof SameIntegerInstance that) {
         return i == that.i;
       }
       return false;
@@ -815,8 +812,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings({"BoxedPrimitiveEquality", "NumericEquality"})
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameLongInstance) {
-        SameLongInstance that = (SameLongInstance) obj;
+      if (obj instanceof SameLongInstance that) {
         return i == that.i;
       }
       return false;
@@ -838,8 +834,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings({"BoxedPrimitiveEquality", "NumericEquality"})
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameFloatInstance) {
-        SameFloatInstance that = (SameFloatInstance) obj;
+      if (obj instanceof SameFloatInstance that) {
         return i == that.i;
       }
       return false;
@@ -861,8 +856,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings({"BoxedPrimitiveEquality", "NumericEquality"})
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameDoubleInstance) {
-        SameDoubleInstance that = (SameDoubleInstance) obj;
+      if (obj instanceof SameDoubleInstance that) {
         return i == that.i;
       }
       return false;
@@ -884,8 +878,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings({"BoxedPrimitiveEquality", "NumericEquality"})
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameShortInstance) {
-        SameShortInstance that = (SameShortInstance) obj;
+      if (obj instanceof SameShortInstance that) {
         return i == that.i;
       }
       return false;
@@ -907,8 +900,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings({"BoxedPrimitiveEquality", "NumericEquality"})
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameByteInstance) {
-        SameByteInstance that = (SameByteInstance) obj;
+      if (obj instanceof SameByteInstance that) {
         return i == that.i;
       }
       return false;
@@ -930,8 +922,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings("BoxedPrimitiveEquality")
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameCharacterInstance) {
-        SameCharacterInstance that = (SameCharacterInstance) obj;
+      if (obj instanceof SameCharacterInstance that) {
         return i == that.i;
       }
       return false;
@@ -953,8 +944,7 @@ public class ClassSanityTesterTest extends TestCase {
     @Override
     @SuppressWarnings("BoxedPrimitiveEquality")
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameBooleanInstance) {
-        SameBooleanInstance that = (SameBooleanInstance) obj;
+      if (obj instanceof SameBooleanInstance that) {
         return i == that.i;
       }
       return false;
@@ -975,8 +965,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameStringInstance) {
-        SameStringInstance that = (SameStringInstance) obj;
+      if (obj instanceof SameStringInstance that) {
         return s == that.s;
       }
       return false;
@@ -997,8 +986,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameObjectInstance) {
-        SameObjectInstance that = (SameObjectInstance) obj;
+      if (obj instanceof SameObjectInstance that) {
         return s == that.s;
       }
       return false;
@@ -1019,8 +1007,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameInterfaceInstance) {
-        SameInterfaceInstance that = (SameInterfaceInstance) obj;
+      if (obj instanceof SameInterfaceInstance that) {
         return s == that.s;
       }
       return false;
@@ -1041,8 +1028,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof SameListInstance) {
-        SameListInstance that = (SameListInstance) obj;
+      if (obj instanceof SameListInstance that) {
         return s == that.s;
       }
       return false;
@@ -1073,8 +1059,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof UsesReferentialEquality) {
-        UsesReferentialEquality that = (UsesReferentialEquality) obj;
+      if (obj instanceof UsesReferentialEquality that) {
         return s == that.s;
       }
       return false;
@@ -1095,8 +1080,7 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof UsesEnum) {
-        UsesEnum that = (UsesEnum) obj;
+      if (obj instanceof UsesEnum that) {
         return s == that.s;
       }
       return false;
@@ -1233,8 +1217,8 @@ public class ClassSanityTesterTest extends TestCase {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-      if (obj instanceof ConstructorParameterMapOfNotInstantiable) {
-        return m.equals(((ConstructorParameterMapOfNotInstantiable) obj).m);
+      if (obj instanceof ConstructorParameterMapOfNotInstantiable instantiable) {
+        return m.equals(instantiable.m);
       } else {
         return false;
       }

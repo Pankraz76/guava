@@ -537,8 +537,8 @@ public final class Floats extends FloatsMethodsForWeb {
    * @since 1.0 (parameter was {@code Collection<Float>} before 12.0)
    */
   public static float[] toArray(Collection<? extends Number> collection) {
-    if (collection instanceof FloatArrayAsList) {
-      return ((FloatArrayAsList) collection).toFloatArray();
+    if (collection instanceof FloatArrayAsList list) {
+      return list.toFloatArray();
     }
 
     Object[] boxedArray = collection.toArray();
@@ -610,14 +610,14 @@ public final class Floats extends FloatsMethodsForWeb {
     @Override
     public boolean contains(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      return (target instanceof Float) && Floats.indexOf(array, (Float) target, start, end) != -1;
+      return (target instanceof Float f) && Floats.indexOf(array, f, start, end) != -1;
     }
 
     @Override
     public int indexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Float) {
-        int i = Floats.indexOf(array, (Float) target, start, end);
+      if (target instanceof Float float1) {
+        int i = Floats.indexOf(array, float1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -628,8 +628,8 @@ public final class Floats extends FloatsMethodsForWeb {
     @Override
     public int lastIndexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Float) {
-        int i = Floats.lastIndexOf(array, (Float) target, start, end);
+      if (target instanceof Float float1) {
+        int i = Floats.lastIndexOf(array, float1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -661,8 +661,7 @@ public final class Floats extends FloatsMethodsForWeb {
       if (object == this) {
         return true;
       }
-      if (object instanceof FloatArrayAsList) {
-        FloatArrayAsList that = (FloatArrayAsList) object;
+      if (object instanceof FloatArrayAsList that) {
         int size = size();
         if (that.size() != size) {
           return false;

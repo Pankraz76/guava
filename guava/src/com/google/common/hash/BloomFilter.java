@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -303,8 +304,7 @@ public final class BloomFilter<T extends @Nullable Object> implements Predicate<
     if (object == this) {
       return true;
     }
-    if (object instanceof BloomFilter) {
-      BloomFilter<?> that = (BloomFilter<?>) object;
+    if (object instanceof BloomFilter<?> that) {
       return this.numHashFunctions == that.numHashFunctions
           && this.funnel.equals(that.funnel)
           && this.bits.equals(that.bits)
@@ -579,7 +579,7 @@ public final class BloomFilter<T extends @Nullable Object> implements Predicate<
       return new BloomFilter<T>(new LockFreeBitArray(data), numHashFunctions, funnel, strategy);
     }
 
-    private static final long serialVersionUID = 1;
+    @Serial private static final long serialVersionUID = 1;
   }
 
   /**
@@ -660,5 +660,5 @@ public final class BloomFilter<T extends @Nullable Object> implements Predicate<
     }
   }
 
-  private static final long serialVersionUID = 0xcafebabe;
+  @Serial private static final long serialVersionUID = 0xcafebabe;
 }

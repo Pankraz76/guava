@@ -133,8 +133,7 @@ abstract class AbstractTable<
   class CellSet extends AbstractSet<Cell<R, C, V>> {
     @Override
     public boolean contains(@Nullable Object o) {
-      if (o instanceof Cell) {
-        Cell<?, ?, ?> cell = (Cell<?, ?, ?>) o;
+      if (o instanceof Cell<?, ?, ?> cell) {
         Map<C, V> row = safeGet(rowMap(), cell.getRowKey());
         return row != null
             && Collections2.safeContains(
@@ -145,8 +144,7 @@ abstract class AbstractTable<
 
     @Override
     public boolean remove(@Nullable Object o) {
-      if (o instanceof Cell) {
-        Cell<?, ?, ?> cell = (Cell<?, ?, ?>) o;
+      if (o instanceof Cell<?, ?, ?> cell) {
         Map<C, V> row = safeGet(rowMap(), cell.getRowKey());
         return row != null
             && Collections2.safeRemove(

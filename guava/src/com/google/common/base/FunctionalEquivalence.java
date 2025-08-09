@@ -19,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.annotations.J2ktIncompatible;
+import java.io.Serial;
 import java.io.Serializable;
 import org.jspecify.annotations.Nullable;
 
@@ -31,7 +32,7 @@ import org.jspecify.annotations.Nullable;
 @GwtCompatible
 final class FunctionalEquivalence<F, T> extends Equivalence<F> implements Serializable {
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 
   private final Function<? super F, ? extends @Nullable T> function;
   private final Equivalence<T> resultEquivalence;
@@ -57,8 +58,7 @@ final class FunctionalEquivalence<F, T> extends Equivalence<F> implements Serial
     if (obj == this) {
       return true;
     }
-    if (obj instanceof FunctionalEquivalence) {
-      FunctionalEquivalence<?, ?> that = (FunctionalEquivalence<?, ?>) obj;
+    if (obj instanceof FunctionalEquivalence<?, ?> that) {
       return function.equals(that.function) && resultEquivalence.equals(that.resultEquivalence);
     }
     return false;

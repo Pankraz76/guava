@@ -23,6 +23,7 @@ import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.annotations.J2ktIncompatible;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -143,5 +144,5 @@ abstract class AbstractListMultimap<K extends @Nullable Object, V extends @Nulla
     return super.equals(object);
   }
 
-  @GwtIncompatible @J2ktIncompatible   private static final long serialVersionUID = 6588350623831699109L;
+  @GwtIncompatible @J2ktIncompatible @Serial   private static final long serialVersionUID = 6588350623831699109L;
 }

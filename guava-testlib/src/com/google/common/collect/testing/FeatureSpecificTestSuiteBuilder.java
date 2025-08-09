@@ -265,11 +265,9 @@ public abstract class FeatureSpecificTestSuiteBuilder<
   }
 
   private static Method extractMethod(Test test) {
-    if (test instanceof AbstractTester) {
-      AbstractTester<?> tester = (AbstractTester<?>) test;
+    if (test instanceof AbstractTester<?> tester) {
       return getMethod(tester.getClass(), tester.getTestMethodName());
-    } else if (test instanceof TestCase) {
-      TestCase testCase = (TestCase) test;
+    } else if (test instanceof TestCase testCase) {
       return getMethod(testCase.getClass(), testCase.getName());
     } else {
       throw new IllegalArgumentException("unable to extract method from test: not a TestCase.");
@@ -309,8 +307,7 @@ public abstract class FeatureSpecificTestSuiteBuilder<
     List<String> temp = new ArrayList<>();
     for (Feature<?> feature : features) {
       Object featureAsObject = feature; // to work around bogus JDK warning
-      if (featureAsObject instanceof Enum) {
-        Enum<?> f = (Enum<?>) featureAsObject;
+      if (featureAsObject instanceof Enum<?> f) {
         temp.add(f.getDeclaringClass().getSimpleName() + "." + feature);
       } else {
         temp.add(feature.toString());

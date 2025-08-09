@@ -19,6 +19,7 @@ package com.google.common.collect;
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.annotations.J2ktIncompatible;
+import java.io.Serial;
 import java.io.Serializable;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
@@ -70,8 +71,7 @@ final class NullsLastOrdering<T extends @Nullable Object> extends Ordering<@Null
     if (object == this) {
       return true;
     }
-    if (object instanceof NullsLastOrdering) {
-      NullsLastOrdering<?> that = (NullsLastOrdering<?>) object;
+    if (object instanceof NullsLastOrdering<?> that) {
       return this.ordering.equals(that.ordering);
     }
     return false;
@@ -87,5 +87,5 @@ final class NullsLastOrdering<T extends @Nullable Object> extends Ordering<@Null
     return ordering + ".nullsLast()";
   }
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

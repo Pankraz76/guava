@@ -44,8 +44,8 @@ final class Platform {
 
   static void rethrowIfErrorOtherThanStackOverflow(Throwable t) {
     checkNotNull(t);
-    if (t instanceof Error && !(t instanceof StackOverflowError)) {
-      throw (Error) t;
+    if (t instanceof Error error && !(t instanceof StackOverflowError)) {
+      throw error;
     }
   }
 

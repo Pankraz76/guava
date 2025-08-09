@@ -218,8 +218,8 @@ public final class Bytes {
    * @since 1.0 (parameter was {@code Collection<Byte>} before 12.0)
    */
   public static byte[] toArray(Collection<? extends Number> collection) {
-    if (collection instanceof ByteArrayAsList) {
-      return ((ByteArrayAsList) collection).toByteArray();
+    if (collection instanceof ByteArrayAsList list) {
+      return list.toByteArray();
     }
 
     Object[] boxedArray = collection.toArray();
@@ -288,14 +288,14 @@ public final class Bytes {
     @Override
     public boolean contains(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      return (target instanceof Byte) && Bytes.indexOf(array, (Byte) target, start, end) != -1;
+      return (target instanceof Byte b) && Bytes.indexOf(array, b, start, end) != -1;
     }
 
     @Override
     public int indexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Byte) {
-        int i = Bytes.indexOf(array, (Byte) target, start, end);
+      if (target instanceof Byte byte1) {
+        int i = Bytes.indexOf(array, byte1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -306,8 +306,8 @@ public final class Bytes {
     @Override
     public int lastIndexOf(@Nullable Object target) {
       // Overridden to prevent a ton of boxing
-      if (target instanceof Byte) {
-        int i = Bytes.lastIndexOf(array, (Byte) target, start, end);
+      if (target instanceof Byte byte1) {
+        int i = Bytes.lastIndexOf(array, byte1, start, end);
         if (i >= 0) {
           return i - start;
         }
@@ -339,8 +339,7 @@ public final class Bytes {
       if (object == this) {
         return true;
       }
-      if (object instanceof ByteArrayAsList) {
-        ByteArrayAsList that = (ByteArrayAsList) object;
+      if (object instanceof ByteArrayAsList that) {
         int size = size();
         if (that.size() != size) {
           return false;

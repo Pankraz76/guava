@@ -259,8 +259,7 @@ final class SubscriberRegistry {
 
     @Override
     public boolean equals(@Nullable Object o) {
-      if (o instanceof MethodIdentifier) {
-        MethodIdentifier ident = (MethodIdentifier) o;
+      if (o instanceof MethodIdentifier ident) {
         return name.equals(ident.name) && parameterTypes.equals(ident.parameterTypes);
       }
       return false;

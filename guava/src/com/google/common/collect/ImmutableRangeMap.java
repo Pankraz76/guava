@@ -29,6 +29,7 @@ import com.google.errorprone.annotations.DoNotCall;
 import com.google.errorprone.annotations.DoNotMock;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -408,8 +409,7 @@ public class ImmutableRangeMap<K extends Comparable<?>, V> implements RangeMap<K
 
   @Override
   public boolean equals(@Nullable Object o) {
-    if (o instanceof RangeMap) {
-      RangeMap<?, ?> rangeMap = (RangeMap<?, ?>) o;
+    if (o instanceof RangeMap<?, ?> rangeMap) {
       return asMapOfRanges().equals(rangeMap.asMapOfRanges());
     }
     return false;
@@ -448,7 +448,7 @@ public class ImmutableRangeMap<K extends Comparable<?>, V> implements RangeMap<K
       return builder.build();
     }
 
-    @J2ktIncompatible private static final long serialVersionUID = 0;
+    @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
   }
 
   Object writeReplace() {
@@ -460,5 +460,5 @@ public class ImmutableRangeMap<K extends Comparable<?>, V> implements RangeMap<K
     throw new InvalidObjectException("Use SerializedForm");
   }
 
-  @J2ktIncompatible private static final long serialVersionUID = 0;
+  @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }

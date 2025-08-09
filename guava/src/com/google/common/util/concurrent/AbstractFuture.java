@@ -282,12 +282,10 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
   static <V extends @Nullable Object> V getDoneValue(Object obj) throws ExecutionException {
     // While this seems like it might be too branch-y, simple benchmarking proves it to be
     // unmeasurable (comparing done AbstractFutures with immediateFuture)
-    if (obj instanceof Cancellation) {
-      Cancellation cancellation = (Cancellation) obj;
+    if (obj instanceof Cancellation cancellation) {
       Throwable cause = cancellation.cause;
       throw cancellationExceptionWithCause("Task was cancelled.", cause);
-    } else if (obj instanceof Failure) {
-      Failure failure = (Failure) obj;
+    } else if (obj instanceof Failure failure) {
       Throwable exception = failure.exception;
       throw new ExecutionException(exception);
     } else if (obj == NULL) {
@@ -370,10 +368,10 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
         if (casValue(abstractFuture, localValue, valueToSet)) {
           rValue = true;
           complete(abstractFuture, mayInterruptIfRunning);
-          if (localValue instanceof DelegatingToFuture) {
+          if (localValue instanceof DelegatingToFuture future) {
             // propagate cancellation to the future set in setfuture, this is racy, and we don't
             // care if we are successful or not.
-            ListenableFuture<?> futureToPropagateTo = ((DelegatingToFuture) localValue).future;
+            ListenableFuture<?> futureToPropagateTo = future.future;
             if (futureToPropagateTo instanceof Trusted) {
               // If the future is a Trusted instance then we specifically avoid calling cancel()
               // this has 2 benefits
@@ -430,7 +428,7 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
    */
   protected final boolean wasInterrupted() {
     @RetainedLocalRef Object localValue = value();
-    return (localValue instanceof Cancellation) && ((Cancellation) localValue).wasInterrupted;
+    return (localValue instanceof Cancellation c) && c.wasInterrupted;
   }
 
   /**
@@ -595,9 +593,9 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
     }
     // The future has already been set to something. If it is cancellation we should cancel the
     // incoming future.
-    if (localValue instanceof Cancellation) {
+    if (localValue instanceof Cancellation cancellation) {
       // we don't care if it fails, this is best-effort.
-      future.cancel(((Cancellation) localValue).wasInterrupted);
+      future.cancel(cancellation.wasInterrupted);
     }
     return false;
   }
@@ -615,11 +613,7 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
       // we do below (just much faster because it is a single field read instead of a read, several
       // branches and possibly creating exceptions).
       Object v = ((AbstractFuture<?>) future).value();
-      if (v instanceof Cancellation) {
-        // If the other future was interrupted, clear the interrupted bit while preserving the cause
-        // this will make it consistent with how non-trustedfutures work which cannot propagate the
-        // wasInterrupted bit
-        Cancellation c = (Cancellation) v;
+      if (v instanceof Cancellation c) {
         if (c.wasInterrupted) {
           v =
               c.cause != null
@@ -630,9 +624,9 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
       // requireNonNull is safe as long as we call this method only on completed futures.
       return requireNonNull(v);
     }
-    if (future instanceof InternalFutureFailureAccess) {
+    if (future instanceof InternalFutureFailureAccess access) {
       Throwable throwable =
-          InternalFutures.tryInternalFastPathGetFailure((InternalFutureFailureAccess) future);
+          InternalFutures.tryInternalFastPathGetFailure(access);
       if (throwable != null) {
         return new Failure(throwable);
       }
@@ -744,8 +738,7 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
          * clearListeners.
          */
         Runnable task = requireNonNull(curr.task);
-        if (task instanceof DelegatingToFuture) {
-          DelegatingToFuture<?> setFuture = (DelegatingToFuture<?>) task;
+        if (task instanceof DelegatingToFuture<?> setFuture) {
           // We unwind setFuture specifically to avoid StackOverflowErrors in the case of long
           // chains of DelegatingToFutures
           // Handling this special case is important because there is no way to pass an executor to
@@ -815,8 +808,8 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
   protected final @Nullable Throwable tryInternalFastPathGetFailure() {
     if (this instanceof Trusted) {
       @RetainedLocalRef Object localValue = value();
-      if (localValue instanceof Failure) {
-        return ((Failure) localValue).exception;
+      if (localValue instanceof Failure failure) {
+        return failure.exception;
       }
     }
     return null;
@@ -884,8 +877,8 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
    */
   protected @Nullable String pendingToString() {
     // TODO(diamondm) consider moving this into addPendingString so it's always in the output
-    if (this instanceof ScheduledFuture) {
-      return "remaining delay=[" + ((ScheduledFuture) this).getDelay(MILLISECONDS) + " ms]";
+    if (this instanceof ScheduledFuture future) {
+      return "remaining delay=[" + future.getDelay(MILLISECONDS) + " ms]";
     }
     return null;
   }
@@ -899,9 +892,9 @@ public abstract class AbstractFuture<V extends @Nullable Object> extends Abstrac
     builder.append("PENDING");
 
     @RetainedLocalRef Object localValue = value();
-    if (localValue instanceof DelegatingToFuture) {
+    if (localValue instanceof DelegatingToFuture future) {
       builder.append(", setFuture=[");
-      appendUserObject(builder, ((DelegatingToFuture) localValue).future);
+      appendUserObject(builder, future.future);
       builder.append("]");
     } else {
       String pendingDescription;

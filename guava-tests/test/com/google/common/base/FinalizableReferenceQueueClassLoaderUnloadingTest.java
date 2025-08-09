@@ -134,8 +134,8 @@ public class FinalizableReferenceQueueClassLoaderUnloadingTest {
 
   private URL[] getClassPathUrls() {
     ClassLoader classLoader = getClass().getClassLoader();
-    return classLoader instanceof URLClassLoader
-        ? ((URLClassLoader) classLoader).getURLs()
+    return classLoader instanceof URLClassLoader urlcl
+        ? urlcl.getURLs()
         : parseJavaClassPath().toArray(new URL[0]);
   }
 

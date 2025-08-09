@@ -35,6 +35,7 @@ import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.Immutable;
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -93,8 +94,7 @@ final class Murmur3_32HashFunction extends AbstractHashFunction implements Seria
 
   @Override
   public boolean equals(@Nullable Object object) {
-    if (object instanceof Murmur3_32HashFunction) {
-      Murmur3_32HashFunction other = (Murmur3_32HashFunction) object;
+    if (object instanceof Murmur3_32HashFunction other) {
       return seed == other.seed && supplementaryPlaneFix == other.supplementaryPlaneFix;
     }
     return false;
@@ -424,5 +424,5 @@ final class Murmur3_32HashFunction extends AbstractHashFunction implements Seria
     return ((0x3L << 6) | (c >>> 6)) | ((0x80 | (0x3F & c)) << 8);
   }
 
-  private static final long serialVersionUID = 0L;
+  @Serial private static final long serialVersionUID = 0L;
 }

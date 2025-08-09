@@ -25,6 +25,7 @@ import com.google.common.annotations.J2ktIncompatible;
 import com.google.common.primitives.Ints;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.Immutable;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import org.jspecify.annotations.Nullable;
@@ -279,8 +280,7 @@ public final class HostAndPort implements Serializable {
     if (this == other) {
       return true;
     }
-    if (other instanceof HostAndPort) {
-      HostAndPort that = (HostAndPort) other;
+    if (other instanceof HostAndPort that) {
       return Objects.equals(this.host, that.host) && this.port == that.port;
     }
     return false;
@@ -312,5 +312,5 @@ public final class HostAndPort implements Serializable {
     return port >= 0 && port <= 65535;
   }
 
-  @GwtIncompatible @J2ktIncompatible private static final long serialVersionUID = 0;
+  @GwtIncompatible @J2ktIncompatible @Serial private static final long serialVersionUID = 0;
 }
