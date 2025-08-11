@@ -145,10 +145,10 @@
                   <activeRecipes>
                       <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
                       <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
+                      <recipe>org.openrewrite.staticanalysis.UnnecessaryParentheses</recipe>
                       <!--<recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>-->
                       <!--<recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>-->
                       <!--<recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>-->
-                      <!--<recipe>org.openrewrite.staticanalysis.UnnecessaryParentheses</recipe>-->
                   </activeRecipes>
                   <exportDatatables>true</exportDatatables>
                   <failOnDryRunResults>true</failOnDryRunResults>
