@@ -38,7 +38,6 @@
       --add-opens java.base/java.util=ALL-UNNAMED
       --add-opens java.base/sun.security.jca=ALL-UNNAMED
     </test.add.opens>
-    <test.add.args></test.add.args>
     <module.status>integration</module.status>
     <variant.jvmEnvironment>android</variant.jvmEnvironment>
     <variant.jvmEnvironmentVariantName>android</variant.jvmEnvironmentVariantName>
