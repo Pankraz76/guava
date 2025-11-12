@@ -266,13 +266,13 @@
             </annotationProcessorPaths>
             <!-- Fork because we need args like add-exports. (But see the TODO above about .mvn/jvm.config.) -->
             <fork>true</fork>
-            <release>1.8</release>
           </configuration>
           <executions>
             <execution>
               <id>default-compile</id>
               <configuration>
-                <release>1.8</release>
+                <source>1.8</source>
+                <target>1.8</target>
                 <excludes>
                   <exclude>module-info.java</exclude>
                 </excludes>
