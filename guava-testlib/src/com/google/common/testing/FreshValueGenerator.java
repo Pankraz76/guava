@@ -388,7 +388,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Integer generateInteger() {
-    return Integer.valueOf(generateInt());
+    return new Integer(generateInt());
   }
 
   @Generates
@@ -399,7 +399,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Long generateLongObject() {
-    return Long.valueOf(generateLong());
+    return new Long(generateLong());
   }
 
   @Generates
@@ -410,7 +410,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Float generateFloatObject() {
-    return Float.valueOf(generateFloat());
+    return new Float(generateFloat());
   }
 
   @Generates
@@ -421,7 +421,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Double generateDoubleObject() {
-    return Double.valueOf(generateDouble());
+    return new Double(generateDouble());
   }
 
   @Generates
@@ -432,7 +432,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Short generateShortObject() {
-    return Short.valueOf(generateShort());
+    return new Short(generateShort());
   }
 
   @Generates
@@ -443,7 +443,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Byte generateByteObject() {
-    return Byte.valueOf(generateByte());
+    return new Byte(generateByte());
   }
 
   @Generates
@@ -454,7 +454,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Character generateCharacter() {
-    return Character.valueOf(generateChar());
+    return new Character(generateChar());
   }
 
   @Generates
@@ -465,7 +465,7 @@ class FreshValueGenerator {
   @SuppressWarnings("removal") // b/321209431 -- maybe just use valueOf here?
   @Generates
   Boolean generateBooleanObject() {
-    return Boolean.valueOf(generateBoolean());
+    return new Boolean(generateBoolean());
   }
 
   @Generates

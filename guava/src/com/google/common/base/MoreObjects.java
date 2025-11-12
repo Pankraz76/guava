@@ -357,7 +357,7 @@ public final class MoreObjects {
       } else if (value instanceof Map) {
         return ((Map<?, ?>) value).isEmpty();
       } else if (value instanceof java.util.Optional) {
-        return ((java.util.Optional<?>) value).isEmpty();
+        return !((java.util.Optional<?>) value).isPresent();
       } else if (value instanceof OptionalInt) {
         return !((OptionalInt) value).isPresent();
       } else if (value instanceof OptionalLong) {
