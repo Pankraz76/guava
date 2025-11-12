@@ -187,7 +187,31 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <plugin>
+          <plugin>
+              <groupId>org.openrewrite.maven</groupId>
+              <artifactId>rewrite-maven-plugin</artifactId>
+              <version>6.23.0</version>
+              <configuration>
+                  <activeRecipes>
+                      <recipe>com.google.openrewrite.SanityCheck</recipe>
+                  </activeRecipes>
+                  <exportDatatables>true</exportDatatables>
+                  <failOnDryRunResults>true</failOnDryRunResults>
+              </configuration>
+              <dependencies>
+                  <dependency>
+                      <groupId>org.openrewrite.recipe</groupId>
+                      <artifactId>rewrite-migrate-java</artifactId>
+                      <version>3.21.1</version>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.openrewrite.recipe</groupId>
+                      <artifactId>rewrite-rewrite</artifactId>
+                      <version>0.15.0</version>
+                  </dependency>
+              </dependencies>
+          </plugin>
+          <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${maven-antrun-plugin.version}</version>
         </plugin>
