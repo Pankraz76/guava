@@ -223,8 +223,6 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-plugin.version}</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
             <encoding>UTF-8</encoding>
             <parameters>true</parameters>
             <compilerArgs combine.children="override">
@@ -266,6 +264,7 @@
             </annotationProcessorPaths>
             <!-- Fork because we need args like add-exports. (But see the TODO above about .mvn/jvm.config.) -->
             <fork>true</fork>
+            <release>11</release>
           </configuration>
           <executions>
             <execution>
