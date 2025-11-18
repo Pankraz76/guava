@@ -275,7 +275,7 @@ public class StreamsTest extends TestCase {
   }
 
   public void testConcatInfiniteStream() {
-    assertThat(Streams.concat(Stream.of(1, 2, 3), Stream.generate(() -> 5)).limit(5))
+    assertThat(Stream.concat(Stream.of(1, 2, 3), Stream.generate(() -> 5)).limit(5))
         .containsExactly(1, 2, 3, 5, 5)
         .inOrder();
   }
