@@ -5,6 +5,7 @@ displayName: Apply Java & Maven best practices
 description: Comprehensive code quality recipe combining modernization, security, and best practices.
 recipeList:
   - org.openrewrite.java.security.JavaSecurityBestPractices
+  - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.maven.UpdateMavenWrapper
   - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
 ---
