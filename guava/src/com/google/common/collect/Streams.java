@@ -66,7 +66,7 @@ public final class Streams {
   public static <T extends @Nullable Object> Stream<T> stream(Iterable<T> iterable) {
     return (iterable instanceof Collection)
         ? ((Collection<T>) iterable).stream()
-        : StreamSupport.stream(iterable.spliterator(), false);
+        : Streams.stream(iterable);
   }
 
   /**

@@ -16,9 +16,11 @@ package com.google.common.base;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.collect.Streams.stream;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
+import com.google.common.collect.Streams;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -27,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -419,8 +420,7 @@ public final class Splitter {
    * @since 28.2 (but only since 33.4.0 in the Android flavor)
    */
   public Stream<String> splitToStream(CharSequence sequence) {
-    // Can't use Streams.stream() from base
-    return StreamSupport.stream(split(sequence).spliterator(), false);
+    return stream(split(sequence));
   }
 
   /**
