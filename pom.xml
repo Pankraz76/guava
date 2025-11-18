@@ -208,11 +208,11 @@
                       <artifactId>rewrite-migrate-java</artifactId>
                       <version>3.21.2</version>
                   </dependency>
-                  <dependency>
-                      <groupId>org.openrewrite.recipe</groupId>
-                      <artifactId>rewrite-rewrite</artifactId>
-                      <version>0.15.0</version>
-                  </dependency>
+<!--                  <dependency>-->
+<!--                      <groupId>org.openrewrite.recipe</groupId>-->
+<!--                      <artifactId>rewrite-rewrite</artifactId>-->
+<!--                      <version>0.15.0</version>-->
+<!--                  </dependency>-->
               </dependencies>
           </plugin>
           <plugin>
